@@ -113,6 +113,8 @@ class DenseNet(nn.Module):
         out = self.trans1(self.dense1(out))
         out = self.trans2(self.dense2(out))
         out = self.dense3(out)
+        print(out.shape)
         out = torch.squeeze(F.avg_pool2d(F.relu(out), 8))
+        print(out.shape)
         out = F.log_softmax(self.fc(out))
         return out
